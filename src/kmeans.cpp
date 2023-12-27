@@ -93,10 +93,12 @@ double **KMeans(double **universe, int universeSize, double **codebook, int K,
       bucketSum[i][j] = 0;
 
   // store the iteration details to a text file
+#if 0
   printf("\nIteration wise codebook and distortions are printed in a file "
          "named kmeans.out\n");
+#endif
   FILE *consoleFile = fopen("kmeans.out", "w");
-
+#if 0
   fprintf(consoleFile, "Initial Codebook - \n");
   for (i = 0; i < K; ++i) {
     for (j = 0; j < p; ++j)
@@ -104,7 +106,7 @@ double **KMeans(double **universe, int universeSize, double **codebook, int K,
     fprintf(consoleFile, "\n");
   }
   fprintf(consoleFile, "\n");
-
+#endif
   i = 0;
   j = 0;
 
@@ -196,7 +198,7 @@ double **KMeans(double **universe, int universeSize, double **codebook, int K,
     previousDistortion = currentDistortion; // store the previous distortion
     currentDistortion =
         totalDistortion / universeSize; // find out the current distortion
-
+#if 0
     fprintf(consoleFile, "Iteration number - %lld\nUpdated Codebook -\n",
             iterationCount);
     for (i = 0; i < K; ++i) {
@@ -205,14 +207,16 @@ double **KMeans(double **universe, int universeSize, double **codebook, int K,
       fprintf(consoleFile, "\n");
     }
     fprintf(consoleFile, "Distortion - %lf\n\n", currentDistortion);
+#endif
     // printf("m = %d, prev = %lf, curr =
     // %lf\n",m,previousDistortion,currentDistortion); //print
   }
-
+#if 0
   printf("\nTotal iterations = %lld\nDistortion difference = %lf\nCurrent "
          "Distortion = %lf\n",
          iterationCount, abs(currentDistortion - previousDistortion),
          currentDistortion);
+#endif
   fclose(consoleFile);
   return codebook;
 }
@@ -243,7 +247,7 @@ int main(int argc, char *argv[]) {
 
   codebook = getRandomCodebook(universe, universeSize, K,
                                p); // generate random codebook
-
+#if 0
   // print it
   printf("\n********************************************\n");
   printf("***************Initial Codebook*************\n");
@@ -253,14 +257,16 @@ int main(int argc, char *argv[]) {
       printf("%lf ", codebook[i][j]);
     printf("\n");
   }
-
+#endif
   codebook =
       KMeans(universe, universeSize, codebook, K, p, delta, w); // run K Means
 
   // print the optimal code book
+#if 0
   printf("\n\n********************************************\n");
   printf("****************Final Codebook**************\n");
   printf("********************************************\n");
+#endif
   for (i = 0; i < K; ++i) {
     for (j = 0; j < p - 1; ++j)
       printf("%lf,", codebook[i][j]);

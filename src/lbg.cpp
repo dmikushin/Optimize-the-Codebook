@@ -87,7 +87,7 @@ double **KMeans(double **universe, int universeSize, double **codebook, int K,
   for (i = 0; i < K; ++i)
     for (j = 0; j < p; ++j)
       bucketSum[i][j] = 0;
-
+#if 0
   // store the iteration details to a text file
   fprintf(consoleFile, "Initial Codebook - \n");
   for (i = 0; i < K; ++i) {
@@ -96,7 +96,7 @@ double **KMeans(double **universe, int universeSize, double **codebook, int K,
     fprintf(consoleFile, "\n");
   }
   fprintf(consoleFile, "\n");
-
+#endif
   i = 0;
   j = 0;
   while (abs(currentDistortion - previousDistortion) >=
@@ -199,11 +199,12 @@ double **KMeans(double **universe, int universeSize, double **codebook, int K,
     // printf("m = %d, prev = %lf, curr =
     // %lf\n",m,previousDistortion,currentDistortion); //print
   }
-
+#if 0
   printf("Total iterations = %lld\nDistortion difference = %lf\nCurrent "
          "Distortion = %lf\n",
          iterationCount, abs(currentDistortion - previousDistortion),
          currentDistortion);
+#endif
   return codebook;
 }
 
@@ -224,12 +225,15 @@ double **LBG(double **universe, int universeSize, double *initialCodebook,
 
   // write output to console file
   FILE *consoleFile = fopen("lbg.out", "w");
+#if 0
   printf("\nIteration wise codebook and distortions are printed in a file "
          "named lbg.out\n");
-
+#endif
   while (codebookSize != K) // till the desired size is not reached
   {
+#if 0
     printf("\nNew Codebook size = %d\n", 2 * codebookSize);
+#endif
     tempCodebook =
         new double *[2 * codebookSize]; // create a double sized codebook
     for (j = 0; j < 2 * codebookSize; ++j)
@@ -249,6 +253,7 @@ double **LBG(double **universe, int universeSize, double *initialCodebook,
                       w, consoleFile); // run k means for optimal codebook
   }
   fclose(consoleFile);
+
   return codebook;
 }
 int main(int argc, char *argv[]) {
@@ -278,7 +283,7 @@ int main(int argc, char *argv[]) {
 
   initialCodebook = getInitialCodebook(universe, universeSize,
                                        p); // generate initial codebook
-
+#if 0
   // print it
   printf("\n********************************************\n");
   printf("***************Initial Codebook*************\n");
@@ -286,14 +291,16 @@ int main(int argc, char *argv[]) {
   for (j = 0; j < p; ++j)
     printf("%lf ", initialCodebook[j]);
   printf("\n");
-
+#endif
   codebook = LBG(universe, universeSize, initialCodebook, K, p, delta, epsilon,
                  w); // run K Means
 
   // print the optimal code book
+#if 0
   printf("\n\n********************************************\n");
   printf("****************Final Codebook**************\n");
   printf("********************************************\n");
+#endif
   for (i = 0; i < K; ++i) {
     for (j = 0; j < p - 1; ++j)
       printf("%lf,", codebook[i][j]);
