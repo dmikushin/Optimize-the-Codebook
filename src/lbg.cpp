@@ -295,9 +295,9 @@ int main(int argc, char *argv[]) {
   printf("****************Final Codebook**************\n");
   printf("********************************************\n");
   for (i = 0; i < K; ++i) {
-    for (j = 0; j < p; ++j)
-      printf("%lf ", codebook[i][j]);
-    printf("\n");
+    for (j = 0; j < p - 1; ++j)
+      printf("%lf,", codebook[i][j]);
+    printf("%lf\n", codebook[i][p - 1]);
   }
 
   return 0;
