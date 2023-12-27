@@ -1,6 +1,19 @@
-# Optimize-the-Codebook
-Here we use K-Means and LBG algorithms to find an optimal codebook.
+# Codebook optimizer
 
-# How to execute code
-1. Open the solution files i.e. [KMeans.sln](./KMeans/KMeans.sln) or [LBG.sln](LBG/LBG.sln) in Visual Studio 2010.
-2. Run by pressing F5 or going to the menu bar.
+Find an optimal codebook with K-Means and LBG algorithms.
+
+## Building
+
+```
+mkdir build
+cd build
+cmake ..
+make
+```
+
+## Testing
+
+```
+./lossy_compress_kmeans ../universe.csv
+./lossy_compress_lbg ../universe.csv
+```

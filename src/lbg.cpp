@@ -1,16 +1,11 @@
-// LBG.cpp : Defines the entry point for the console application.
-//
-
-#include "stdafx.h"
 #include <stdio.h>
-#include <conio.h>
 #include <stdlib.h>
 #include <ctype.h>
 #include <math.h>
 #include <string.h>
 #include <time.h>
 
-double ** readUniverseFile(char * fileName, int universeSize, int p, int rowSize)
+double ** readUniverseFile(const char * fileName, int universeSize, int p, int rowSize)
 {
 	char * line;
 	
@@ -221,8 +216,8 @@ double ** LBG(double ** universe, int universeSize, double * initialCodebook, in
 			codebook[i][j] = initialCodebook[j];
 
 	//write output to console file
-	FILE * consoleFile = fopen("ConsoleOutput.txt","w");
-	printf("\nIteration wise codebook and distortions are printed in a file named ConsoleOutput.txt\n");
+	FILE * consoleFile = fopen("lbg.out","w");
+	printf("\nIteration wise codebook and distortions are printed in a file named lbg.out\n");
 
 	while(codebookSize != K) //till the desired size is not reached
 	{
@@ -248,11 +243,11 @@ double ** LBG(double ** universe, int universeSize, double * initialCodebook, in
 	fclose(consoleFile);
 	return codebook;
 }
-int _tmain(int argc, _TCHAR* argv[])
+int main(int argc, char* argv[])
 {
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/*variable declaration*/
-	char * universeFileName = "Universe/Universe.csv"; //universe file name
+	const char * universeFileName = argv[1]; //universe file name
 	/*universeSize is the total number of vectors given
 	p stores the value of p
 	rowSize stores the size of one row of the .csv file
@@ -295,8 +290,6 @@ int _tmain(int argc, _TCHAR* argv[])
 		printf("\n");
 	}
 
-	printf("Breakpoint");
-	
 	return 0;
 }
 
